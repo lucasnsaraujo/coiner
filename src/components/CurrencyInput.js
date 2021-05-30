@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function CurrencyInput(props) {
   const [currencyOrigin, setCurrencyOrigin] = useState({
@@ -10,10 +10,15 @@ export default function CurrencyInput(props) {
     value: 0.0,
   });
 
-  useEffect(() => {}, [currencyOrigin, currencyConverted]);
 
   function handleCurrencyChange(event) {
-    console.log(event.target.value);
+    if(event.target.id === "currency-origin") {
+      setCurrencyOrigin({...currencyOrigin, currency: event.target.value})
+      console.log(currencyOrigin)
+    } else if (event.target.id === "currency-converted") {
+      setCurrencyConverted({...currencyConverted, currency: event.target.value})
+      console.log(currencyConverted)
+    }
   }
 
   function handleInputChange(event) {
@@ -22,7 +27,8 @@ export default function CurrencyInput(props) {
         setCurrencyOrigin({
           ...currencyOrigin,
           value: parseFloat(event.target.value),
-        });
+        })
+        setCurrencyConverted({...currencyConverted, value: (parseFloat(event.target.value) * 3)})
       } else {
         setCurrencyOrigin({ ...currencyOrigin, value: 0 });
       }
@@ -34,6 +40,7 @@ export default function CurrencyInput(props) {
           ...currencyConverted,
           value: parseFloat(event.target.value),
         });
+        setCurrencyOrigin({...currencyOrigin, value: (parseFloat(event.target.value) * 3)})
       } else {
         setCurrencyConverted({ ...currencyConverted, value: 0 });
       }
