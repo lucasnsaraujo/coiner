@@ -5,7 +5,7 @@ export default function Header(props) {
     <div>
       <header>
         {" "}
-        <h1>Currency Converter</h1>{" "}
+        <h1>Coiner - a cryptocurrency converter</h1>{" "}
       </header>
     </div>
   );
